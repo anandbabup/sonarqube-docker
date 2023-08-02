@@ -1,0 +1,6 @@
+projectKey=vve-bff-conference
+serverUrl=http://127.0.0.1:9000
+serverVersion=10.1.0.73491
+dashboardUrl=http://127.0.0.1:9000/dashboard?id=vve-bff-conference
+ceTaskId=AYmye3vC51_CNCKRdGd0
+ceTaskUrl=http://127.0.0.1:9000/api/ce/task?id=AYmye3vC51_CNCKRdGd0

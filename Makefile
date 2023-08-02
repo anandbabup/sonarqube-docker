@@ -54,7 +54,10 @@
 # 	./scripts/install-sonar-scanner.sh
 sonar-scan: ## run sonarqube
 	../sonar-scanner-4.8.0.2856-macosx/bin/sonar-scanner \
-		-Dsonar.projectKey=LocalJSFolderTest \
-		-Dsonar.sources=. \
+		-Dsonar.projectKey=vve-bff-conference \
 		-Dsonar.host.url=http://127.0.0.1:9000 \
-		-Dsonar.token=sqp_477ccff649dbfd4cd0038cf2bc315e46652effff
+  		-Dsonar.token=sqp_2f66b5030f3aada09d32aa09090e55aa723d825d
+		
+
+
+		
