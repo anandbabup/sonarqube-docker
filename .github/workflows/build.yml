@@ -3,7 +3,7 @@ name: SonarQube Analysis
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   sonarqube-analysis:
@@ -16,8 +16,19 @@ jobs:
       - name: Wait for SonarQube to be ready
         run: sleep 60  # Adjust the time based on how long it takes SonarQube to be ready
 
+      - name: Set up SonarQube Scanner
+        run: |
+          curl -LsS https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip -o build-wrapper-linux-x86.zip
+          unzip build-wrapper-linux-x86.zip
+          curl -LsS https://sonarcloud.io/static/cpp/sonar-scanner-cli-4.6.2.2472-linux.zip -o sonar-scanner-cli-4.6.2.2472-linux.zip
+          unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+          mv build-wrapper-linux-x86/ build-wrapper/
+          mv sonar-scanner-4.6.2.2472-linux/ sonar-scanner/
+
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v1
-        with:
-          sonar-host-url: http://localhost:9000  # Change to the appropriate URL if using a different port or domain
-          sonar-login: ${{ secrets.SONARQUBE_TOKEN }}
+        env:
+          SONAR_HOST_URL: http://localhost:9000  # Change to the appropriate URL if using a different port or domain
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+        run: |
+          build-wrapper/build-wrapper-linux-x86-64 --out-dir bw-output make  # Adjust the build command as needed
+          sonar-scanner/bin/sonar-scanner
