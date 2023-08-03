@@ -3,8 +3,3 @@ module.exports = function sum(a, b) {
     return a + b;
 }
   
-module.exports = function sub(a, b) {
-    return a - b;
-}
- 
-  
